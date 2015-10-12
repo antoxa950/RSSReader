@@ -1,0 +1,73 @@
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <script language="javascript" src="reader.js"></script>
+    <script language="javascript" src="libs/jquery/jquery-2.1.4.js"></script>
+    <script language="javascript" src="libs/zRSSFeed/jquery.zrssfeed.min.js"></script>
+    <script language="javascript" src="libs/canvas/canvasjs.min.js"></script>
+    <script language="javascript">
+        getRSS();
+        window.onload = function () {
+            var chart = new CanvasJS.Chart("chart",
+                    {
+                        title: {
+                            text: "Statistic of words"
+                        },
+                        legend: {
+                            maxWidth: 500,
+                            itemWidth: 20
+                        },
+                        data: [
+                            {
+                                type: "pie",
+                                toolTipContent: "{label}: {y}%",
+                                showInLegend: true,
+                                legendText: "{indexLabel}"
+                            }
+                        ]
+                    });
+            document.chart = chart;
+        }
+    </script>
+
+    <link href="css/jquery.zrssfeed.css" rel="stylesheet" type="text/css"/>
+</head>
+<address>Anton Gnyady</address>
+<body>
+<div style="width: auto;">
+    <div style="float: left; width: 200px; max-width: 200px" align="left">
+        <form>
+            <p><select id="channelsList" name="select" size="10" multiple style="max-width: 200px" onclick="getRSS();" ondblclick="removeChannel(this);">
+                <option selected="true" value="http://www.anekdot.ru/rss/export_j.xml">www.anekdot.ru</option>
+                <option value="http://news.turmir.com/rss.html">news.turmir.com</option>
+                <option value="http://printgames.ru/feed">www.printgames.ru</option>
+                <option value="http://feeds.frontender.info/FrontenderMagazine">www.frontender.info</option>
+                <option value="http://www.ibm.com/developerworks/views/global/rss/libraryview.jsp?feed_by=atom">
+                    www.ibm.com
+                </option>
+                <option value="http://www.ntdtv.com/xtr/gb/topArticlesContent.xml">
+                    www.ntdtv.com
+                </option>
+            </select>
+                <br>Site address:<br>
+                <input id="addressInput" type="text" size="30" style="width: 140px; float: left; margin-top: 3px"
+                       oninput="checkAddressInput(); return false;">
+                <input id="addressAdd" type="submit" value="Add" disabled="true"
+                       style="width: 50px; float: inherit; margin-left: 5px; margin-top: 3px"
+                       onclick="addRSSFeed(); return false;">
+            </p>
+        </form>
+    </div>
+    <p id="channelInfo" style="float: inherit">
+    </p>
+    <div id="channelMessages" align="center" style="float: left; width: auto; max-width: 300px; margin-top: 0px; margin-left: 10px">
+    </div>
+    <div style="margin: auto; float: left;" align="center">
+        <div class="rss" id="messageContent"
+             style="width: auto; max-width: 500px; margin-top: 0px; margin-left: 10px">
+        </div>
+        <div id="chart" style="width: 500px;"></div>
+    </div>
+</div>
+</body>
+</html>
