@@ -52,7 +52,7 @@ function showContent(e) {
             }
         }
         function isValid(symbol) {
-            var re = /[!-@\[-`\{-~\s—…]/;
+            var re = /[!-@\[-`\{-~\sï¿½ï¿½]/;
             return !re.test(symbol);
         }
 
