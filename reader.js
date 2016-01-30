@@ -1,4 +1,5 @@
 function getRSS() {
+  //added new comment from RSSReader
     $(document).ready(function () {
         var channelsList = document.getElementById("channelsList");
         var selectedChannel = "";
